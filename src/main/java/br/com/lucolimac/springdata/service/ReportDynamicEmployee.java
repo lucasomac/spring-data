@@ -22,7 +22,7 @@ public class ReportDynamicEmployee {
         this.employeeRepository = employeeRepository;
     }
 
-    public void iniinitcial(Scanner scanner) {
+    public void init(Scanner scanner) {
         System.out.println("Digite o nome");
         String nome = scanner.next();
 
@@ -38,28 +38,28 @@ public class ReportDynamicEmployee {
         }
 
         System.out.println("Digite o Salario");
-        Double salario = scanner.nextDouble();
+        Double salary = scanner.nextDouble();
 
-        if (salario == 0) {
-            salario = null;
+        if (salary == 0) {
+            salary = null;
         }
 
         System.out.println("Digite o data de contratacao");
         String data = scanner.next();
 
-        LocalDate dataContratacao;
+        LocalDate dataContract;
         if (data.equalsIgnoreCase("NULL")) {
-            dataContratacao = null;
+            dataContract = null;
         } else {
-            dataContratacao = LocalDate.parse(data, formatter);
+            dataContract = LocalDate.parse(data, formatter);
         }
 
         List<Employee> employees = employeeRepository.findAll(Specification
                 .where(
                         EmployeeSpecification.name(nome))
                 .or(EmployeeSpecification.cpf(cpf))
-                .or(EmployeeSpecification.salary(salario))
-                .or(EmployeeSpecification.dateContract(dataContratacao))
+                .or(EmployeeSpecification.salary(salary))
+                .or(EmployeeSpecification.dateContract(dataContract))
         );
         employees.forEach(System.out::println);
     }

@@ -22,6 +22,10 @@ public class ReportService {
         this.employeeRepository = employeeRepository;
     }
 
+    private static void accept(EmployeeProjection f) {
+        System.out.printf("Funcionario: id: %d | nome: %s | salario: %s%n", f.getId(), f.getName(), f.getSalary());
+    }
+
 
     public void init(Scanner scanner) {
         while (system) {
@@ -78,7 +82,7 @@ public class ReportService {
 
     private void searchEmployeeSalary() {
         List<EmployeeProjection> list = employeeRepository.findEmployeeSalary();
-        list.forEach(f -> System.out.println("Funcionario: id: " + f.getId() + " | nome: " + f.getName() + " | salario: " + f.getSalary()));
+        list.forEach(ReportService::accept);
     }
 
 }
