@@ -18,13 +18,11 @@ public class Employee {
     private Double salary;
     private LocalDate dateContract;
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
     private Role role;
     @Fetch(FetchMode.SELECT)
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "employee_unit", joinColumns = {
-            @JoinColumn(name = "fk_employee") },
-            inverseJoinColumns = { @JoinColumn(name = "fk_unit") })
+    @JoinTable(name = "employee_unit", joinColumns = {@JoinColumn(name = "fk_employee")}, inverseJoinColumns = {@JoinColumn(name = "fk_unit")})
     private List<UnitWork> unitsWork;
 
     public Long getId() {
@@ -85,7 +83,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee: " + "id:" + id + "| nome:'" + name + "| cpf:" + cpf + "| salario:" + salary
-                + "| dataContratacao:" + dateContract + "| cargo:" + role.getDescription();
+        return "Employee: id:%d| nome:'%s| cpf:%s| salario:%s| dataContratacao:%s| cargo:%s".formatted(id, name, cpf, salary, dateContract, role.getDescription());
     }
 }

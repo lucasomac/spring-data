@@ -14,12 +14,16 @@ import java.util.List;
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
     List<Employee> findByName(String nome);
 
-    @Query("SELECT e FROM Employee e WHERE e.name = :nome " + "AND e.salary >= :salario AND e.dateContract = :data")
+    @Query("SELECT e FROM Employee e WHERE e.name = :name " + "AND e.salary >= :salary AND e.dateContract = :data")
     List<Employee> findNameSalaryBiggerDataContract(String name, Double salary, LocalDate data);
 
-    @Query(value = "SELECT * FROM employee e WHERE e.data_contract >= :data", nativeQuery = true)
+    @Query(value = "SELECT * FROM employee e WHERE e.date_contract >= :data", nativeQuery = true)
     List<Employee> findDateContractBigger(LocalDate data);
 
     @Query(value = "SELECT e.id, e.name, e.salary FROM employee e", nativeQuery = true)
     List<EmployeeProjection> findEmployeeSalary();
+
+    void save(Employee employee);
+
+    void deleteById(long id);
 }
