@@ -16,7 +16,7 @@ public class Employee {
     private String name;
     private String cpf;
     private Double salary;
-    private LocalDate dataContract;
+    private LocalDate dateContract;
     @ManyToOne
     @JoinColumn(name = "id", nullable = false, insertable=false, updatable=false)
     private Role role;
@@ -59,12 +59,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public LocalDate getDataContract() {
-        return dataContract;
+    public LocalDate getDateContract() {
+        return dateContract;
     }
 
-    public void setDataContract(LocalDate dataContract) {
-        this.dataContract = dataContract;
+    public void setDateContract(LocalDate dateContract) {
+        this.dateContract = dateContract;
     }
 
     public Role getRole() {
@@ -86,6 +86,6 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee: " + "id:" + id + "| nome:'" + name + "| cpf:" + cpf + "| salario:" + salary
-                + "| dataContratacao:" + dataContract + "| cargo:" + role.getDescription();
+                + "| dataContratacao:" + dateContract + "| cargo:" + role.getDescription();
     }
 }

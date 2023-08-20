@@ -135,14 +135,14 @@ public class CrudEmployeeService {
         employee.setName(name);
         employee.setCpf(cpf);
         employee.setSalary(salary);
-        employee.setDataContract(LocalDate.parse(dataContract, formatter));
+        employee.setDateContract(LocalDate.parse(dataContract, formatter));
         Optional<Role> role = roleRepository.findById(roleId);
         employee.setRole(role.get());
     }
 
     private void view(Scanner scanner) {
         System.out.println("Qual pagina voce deseja visualizar");
-        Integer page = scanner.nextInt();
+        int page = scanner.nextInt();
 
         Pageable pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.ASC, "name"));
         Page<Employee> employees = employeeRepository.findAll(pageable);
